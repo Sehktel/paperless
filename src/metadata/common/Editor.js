@@ -7,7 +7,7 @@
  */
 
 import paper from 'paper/dist/paper-core';
-import drawer from 'windowbuilder/dist/drawer';
+import drawer from 'wb-core/dist/drawer';
 
 export default function ($p) {
 
@@ -43,7 +43,8 @@ export default function ($p) {
         }
       }
       for(const flap of contours) {
-        if(flap.furn.furn_set.name.toLowerCase().includes('пассив')) {
+        const {furn_set} = flap.furn;
+        if(furn_set.shtulp_kind() === 2 || furn_set.name.toLowerCase().includes('пассив')) {
           for(const profile of flap.profiles) {
             const nearest = profile.nearest(true);
             if(nearest) {
@@ -68,5 +69,29 @@ export default function ($p) {
       }
     }
 
+  };
+
+  const {Filling, DimensionRadius} = EditorInvisible;
+  Filling.prototype.draw_arcr = function () {
+    const {profiles, l_dimensions, elm} = this;
+    for(const {sub_path} of profiles) {
+      if(sub_path.length > 50 && !sub_path.is_linear()) {
+        const p0 = sub_path.getPointAt(sub_path.length * 0.66);
+        const dr = new DimensionRadius({
+          elm1: {
+            path: sub_path,
+            length: sub_path.length,
+            _attr: {
+              _corns: [null, sub_path.firstSegment.point, sub_path.lastSegment.point],
+            }
+          },
+          p1: sub_path.getOffsetOf(p0).round(),
+          parent: l_dimensions,
+          by_curve: false,
+          ref: `r-${elm}`,
+        });
+        dr.redraw();
+      }
+    }
   };
 }

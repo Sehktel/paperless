@@ -1,14 +1,14 @@
 {
   "name": "paperless",
-  "version": "2.1.253",
+  "version": "2.1.255",
   "description": "Безбумажка для Заказа дилера",
   "repository": {
     "type": "git",
     "url": "https://github.com/oknosoft/paperless"
   },
   "engines": {
-    "node": "^8.15",
-    "npm": "^6.12"
+    "node": "^12.18",
+    "npm": "^6.14"
   },
   "keywords": [
     "metadata",
@@ -20,16 +20,18 @@
   "author": "Evgeniy Malyarov <info@oknosoft.ru> (http://www.oknosoft.ru)",
   "license": "SEE LICENSE IN LICENSE.en.md",
   "proxy": "http://localhost:3016/",
+  "proxy1": "https://paperless.ecookna.ru/",
   "dependencies": {
-    "md5-file": "^4.0.0",
-    "metadata-abstract-ui": "2.0.22-beta.7",
-    "metadata-core": "2.0.22-beta.7",
-    "metadata-pouchdb": "2.0.22-beta.7",
-    "metadata-react": "2.0.22-beta.7",
-    "metadata-redux": "2.0.22-beta.7",
-    "metadata-superlogin": "2.0.22-beta.7",
-    "paper-jsdom-canvas": "^0.12.4",
-    "windowbuilder": "github:oknosoft/windowbuilder-core#6692734e65e61787699f81590e1c013965548d67"
+    "md5-file": "^5.0",
+    "metadata-abstract-ui": "2.0.24-beta.2",
+    "metadata-core": "2.0.24-beta.2",
+    "metadata-pouchdb": "2.0.24-beta.2",
+    "metadata-react": "2.0.24-beta.2",
+    "metadata-redux": "2.0.24-beta.2",
+    "metadata-superlogin": "2.0.24-beta.2",
+    "paper-jsdom-canvas": "0.12.8",
+    "wb-core": "github:oknosoft/windowbuilder-core#44fab7c0a617da0b42245af5e668d127a972f424",
+    "wb-forms": "github:oknosoft/windowbuilder-forms#237316dce6ff4baff06a930b7a06375c9a85c19a"
   },
   "devDependencies": {
     "@babel/core": "7.9.0",
@@ -37,8 +39,8 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
-    "@typescript-eslint/eslint-plugin": "^2.31.0",
-    "@typescript-eslint/parser": "^2.31.0",
+    "@typescript-eslint/eslint-plugin": "^2.34.0",
+    "@typescript-eslint/parser": "^2.34.0",
     "babel-eslint": "10.1.0",
     "babel-jest": "^24.9.0",
     "babel-loader": "8.1.0",
@@ -91,6 +93,11 @@
     "webpack-manifest-plugin": "2.2.0",
     "workbox-webpack-plugin": "4.3.1"
   },
+  "files": [
+    "server/**",
+    "LICENSE",
+    "LICENSE.ru.md"
+  ],
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
